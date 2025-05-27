@@ -11,9 +11,15 @@ class HMCards_Movies_InformationContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// -- RESPONSIVE DIMENSIONS --
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.04; // --- ~4% of screen width ---
+    final double fontSize = MediaQuery.of(context).size.width *
+        0.035; // -- ~3.5% of screen width --
+
     return Positioned(
-      left: 15,
-      right: 18,
+      left: horizontalPadding,
+      right: horizontalPadding,
       bottom: 0,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,42 +32,42 @@ class HMCards_Movies_InformationContainer extends StatelessWidget {
                   movieModel.getTranslatedName(context),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: fontSize,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: fontSize * 0.35),
                 Text(
                   movieModel.year!,
                   maxLines: 1,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: fontSize,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                const SizedBox(height: 5),
+                SizedBox(height: fontSize * 0.35),
               ],
             ),
           ),
-          const SizedBox(width: 20),
+          SizedBox(width: horizontalPadding),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(
+              Icon(
                 Icons.star,
                 color: Colors.amber,
-                size: 16,
+                size: fontSize * 1.15,
               ),
-              const SizedBox(width: 2),
+              SizedBox(width: fontSize * 0.15),
               Text(
                 movieModel.movieRating!,
                 maxLines: 1,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.bold,
                 ),
               ),

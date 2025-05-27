@@ -14,10 +14,16 @@ class HMGenreContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// -- CALCULATE RESPONSIVE --
+    final double containerWidth =
+        MediaQuery.of(context).size.width * 0.6; // --- ~60% of screen width ---
+    final double borderRadius =
+        containerWidth * 0.1; // --- Proportional border radius ---
+
     return Container(
-      width: 240,
+      width: containerWidth,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(borderRadius),
         image: DecorationImage(
           image: AssetImage(imageAsset),
           fit: BoxFit.cover,
@@ -32,9 +38,13 @@ class HMGenreContainer extends StatelessWidget {
           ),
         ],
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width *
+            0.025, // --- ~2.5% of screen width ---
+      ),
       foregroundDecoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(
+            borderRadius * 0.72), // --- Adjusted for inner gradient ---
         gradient: LinearGradient(
           colors: [
             genreColor.withOpacity(isDark ? 0.8 : 0.9),

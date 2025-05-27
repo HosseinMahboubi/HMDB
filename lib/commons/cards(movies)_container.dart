@@ -11,9 +11,13 @@ class HMCards_Movies_Container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive width: about 45% of screen width ---
+    final double cardWidth = MediaQuery.of(context).size.width * 0.45;
+    final double cardHeight = cardWidth;
+
     return Container(
-      height: 200,
-      width: 200,
+      height: cardHeight,
+      width: cardWidth,
       foregroundDecoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -24,7 +28,9 @@ class HMCards_Movies_Container extends StatelessWidget {
           end: Alignment.topCenter,
         ),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.025,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
