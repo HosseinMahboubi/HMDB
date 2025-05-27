@@ -22,6 +22,12 @@ class IMDBTop250Page extends StatelessWidget {
 
     final topMovies = [...top250imdb].take(7).toList();
 
+    /// --- Responsive padding and spacing ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double gridSpacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) {
@@ -47,12 +53,12 @@ class IMDBTop250Page extends StatelessWidget {
               /// -- MOVIE GRID --
               Expanded(
                 child: GridView.builder(
-                  padding: const EdgeInsets.all(HMSizes.defaultSpace),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  padding: EdgeInsets.all(defaultPadding),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.7,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+                    crossAxisSpacing: gridSpacing,
+                    mainAxisSpacing: gridSpacing,
                   ),
                   itemCount: topMovies.length,
                   itemBuilder: (context, index) {
@@ -88,19 +94,30 @@ class IMDBTop250Page extends StatelessWidget {
 
           /// -- RANK BADGE --
           Positioned(
-            top: 8,
-            left: 8,
+            top: MediaQuery.of(context).size.height *
+                0.01, // ~1% of screen height
+            left:
+                MediaQuery.of(context).size.width * 0.02, // ~2% of screen width
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width *
+                    0.02, // ~2% of screen width
+                vertical: MediaQuery.of(context).size.height *
+                    0.005, // ~0.5% of screen height
+              ),
               decoration: BoxDecoration(
                 color: HMColors.primary,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(
+                    MediaQuery.of(context).size.width *
+                        0.02), // ~2% of screen width
               ),
               child: Text(
                 '#$rank',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  fontSize: MediaQuery.of(context).size.width *
+                      0.035, // ~3.5% of screen width
                 ),
               ),
             ),
@@ -108,14 +125,17 @@ class IMDBTop250Page extends StatelessWidget {
 
           /// -- ADD FAVORITE BUTTON --
           Positioned(
-            top: 8,
-            right: 8,
+            top: MediaQuery.of(context).size.height *
+                0.01, // ~1% of screen height
+            right:
+                MediaQuery.of(context).size.width * 0.02, // ~2% of screen width
             child: GestureDetector(
               onTap: () {
                 favoriteController.toggleFavorite(movie);
               },
               child: Container(
-                padding: const EdgeInsets.all(6),
+                padding: EdgeInsets.all(MediaQuery.of(context).size.width *
+                    0.015), // ~1.5% of screen width
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.6),
                   shape: BoxShape.circle,
@@ -128,7 +148,8 @@ class IMDBTop250Page extends StatelessWidget {
                     color: favoriteController.isFavorite(movie)
                         ? Colors.red
                         : Colors.white,
-                    size: 18,
+                    size: MediaQuery.of(context).size.width *
+                        0.045, // ~4.5% of screen width
                   ),
                 ),
               ),
@@ -137,9 +158,12 @@ class IMDBTop250Page extends StatelessWidget {
 
           /// -- MOVIE INFO --
           Positioned(
-            bottom: 12,
-            left: 12,
-            right: 12,
+            bottom: MediaQuery.of(context).size.height *
+                0.015, // ~1.5% of screen height
+            left:
+                MediaQuery.of(context).size.width * 0.03, // ~3% of screen width
+            right:
+                MediaQuery.of(context).size.width * 0.03, // ~3% of screen width
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -147,34 +171,44 @@ class IMDBTop250Page extends StatelessWidget {
                   movie.getTranslatedName(context),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: MediaQuery.of(context).size.width *
+                        0.035, // ~3.5% of screen width
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.005), // ~0.5% of screen height
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.star,
                       color: Colors.amber,
-                      size: 16,
+                      size: MediaQuery.of(context).size.width *
+                          0.04, // ~4% of screen width
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width *
+                            0.01), // ~1% of screen width
                     Text(
                       movie.movieRating ?? 'N/A',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.03, // ~3% of screen width
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width *
+                            0.02), // ~2% of screen width
                     Text(
                       movie.year ?? '',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 12,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.03, // ~3% of screen width
                       ),
                     ),
                   ],

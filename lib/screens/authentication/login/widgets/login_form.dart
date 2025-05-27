@@ -5,7 +5,6 @@ import 'package:hmdb/screens/authentication/login/controller/login_controller.da
 import 'package:hmdb/screens/authentication/login/pages/forget_password.dart';
 import 'package:hmdb/screens/authentication/signup/signup.dart';
 import 'package:hmdb/utils/constants/colors.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -22,9 +21,15 @@ class HMLoginForm extends StatelessWidget {
     /// -- INITIALIZE THE CONTROLLERS --
     final controller = Get.put(LoginController());
 
+    /// --- Responsive dimensions ---
+    final double paddingVertical =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: HMSizes.spaceBtwSections),
+        padding: EdgeInsets.symmetric(vertical: paddingVertical),
         child: Column(
           children: [
             /// -- USERNAME --
@@ -34,38 +39,42 @@ class HMLoginForm extends StatelessWidget {
               /// --- 👆 Added to the controller ---
 
               decoration: InputDecoration(
-                prefixIcon: Icon(dark ? Iconsax.user : Iconsax.user),
+                prefixIcon:
+                    Icon(dark ? Iconsax.user : Iconsax.user, size: iconSize),
                 labelText: 'username'.translate(context),
               ),
             ),
 
-            const SizedBox(height: HMSizes.spaceBtwInputFields),
+            SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.015), // ~1.5% of screen height
 
             /// -- PASSWORD --
             Obx(
               () => TextFormField(
-                obscureText: controller
-                    .obscureText.value, // --- Use controller's value ---
+                obscureText: controller.obscureText.value,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(dark ? Iconsax.lock5 : Iconsax.lock),
+                  prefixIcon:
+                      Icon(dark ? Iconsax.lock5 : Iconsax.lock, size: iconSize),
                   labelText: 'password'.translate(context),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      controller.obscureText
-                              .value // --- Use controller's value ---
+                      controller.obscureText.value
                           ? (dark ? Iconsax.eye_slash5 : Iconsax.eye_slash)
                           : (dark
                               ? Icons.remove_red_eye
                               : Icons.remove_red_eye),
+                      size: iconSize,
                     ),
-                    onPressed: controller
-                        .togglePasswordVisibility, // --- Use controller's method ---
+                    onPressed: controller.togglePasswordVisibility,
                   ),
                 ),
               ),
             ),
 
-            const SizedBox(height: HMSizes.spaceBtwInputFields / 2),
+            SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.01), // ~1% of screen height
 
             /// -- REMEMBER ME and FORGET PASSWORD  --
             Row(
@@ -91,15 +100,16 @@ class HMLoginForm extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: HMSizes.spaceBtwSections),
+            SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.02), // ~2% of screen height
 
             /// -- SIGN IN BUTTON --
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  String username = controller.usernameController
-                      .text; // --- Use controller's username ---
+                  String username = controller.usernameController.text;
                   Get.to(
                     () => NavigationMenu(
                       username: username.isEmpty ? "Admin" : username,
@@ -120,7 +130,9 @@ class HMLoginForm extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: HMSizes.spaceBtwItems),
+            SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.015), // ~1.5% of screen height
 
             /// -- CREATE ACCOUNT BUTTON --
             SizedBox(

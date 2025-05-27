@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hmdb/pages/search/controller/search_controller.dart';
 import 'package:hmdb/data/movies.dart';
+import 'package:hmdb/pages/search/controller/search_controller.dart';
 import 'package:hmdb/screens/details/details_screen.dart';
 import 'package:hmdb/utils/constants/colors.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
@@ -15,6 +15,13 @@ class SearchResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<MovieSearchController>();
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive dimensions ---
+    final double cardRadius = MediaQuery.of(context).size.width * 0.03;
+    final double imageWidth = MediaQuery.of(context).size.width * 0.2;
+    final double imageHeight = MediaQuery.of(context).size.height * 0.15;
+    final double iconSize = MediaQuery.of(context).size.width * 0.04;
+    final double customPadding = MediaQuery.of(context).size.width * 0.04;
 
     return Scaffold(
       appBar: AppBar(
@@ -47,11 +54,12 @@ class SearchResultsPage extends StatelessWidget {
         }
 
         return ListView.builder(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(customPadding),
           itemCount: controller.searchResults.length,
           itemBuilder: (context, index) {
             final movie = controller.searchResults[index];
-            return _buildMovieListItem(context, movie, dark);
+            return _buildMovieListItem(context, movie, dark, cardRadius,
+                imageWidth, imageHeight, iconSize);
           },
         );
       }),
@@ -59,29 +67,38 @@ class SearchResultsPage extends StatelessWidget {
   }
 
   Widget _buildMovieListItem(
-      BuildContext context, MovieModel movie, bool dark) {
+      BuildContext context,
+      MovieModel movie,
+      bool dark,
+      double cardRadius,
+      double imageWidth,
+      double imageHeight,
+      double iconSize) {
+    final double customPadding = MediaQuery.of(context).size.width * 0.04;
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin:
+          EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.015),
       elevation: 2,
       color: dark ? HMColors.darkerGrey : HMColors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(cardRadius)),
       child: InkWell(
         onTap: () {
           Get.to(() => DetailsScreen(movie: movie));
         },
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(cardRadius),
         child: Row(
           children: [
             /// -- MOVIE POSTER --
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(cardRadius),
+                bottomLeft: Radius.circular(cardRadius),
               ),
               child: Image.asset(
                 movie.imageAsset ?? '',
-                width: 80,
-                height: 120,
+                width: imageWidth,
+                height: imageHeight,
                 fit: BoxFit.cover,
               ),
             ),
@@ -89,7 +106,7 @@ class SearchResultsPage extends StatelessWidget {
             /// -- MOVIE INFO --
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(customPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -101,27 +118,30 @@ class SearchResultsPage extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.005),
                     Row(
                       children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 16),
-                        const SizedBox(width: 4),
+                        Icon(Icons.star, color: Colors.amber, size: iconSize),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.01),
                         Text(
                           movie.movieRating ?? 'N/A',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03),
                         Text(
                           movie.year ?? '',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     if (movie.movieTags != null && movie.movieTags!.isNotEmpty)
                       Wrap(
-                        spacing: 6,
-                        runSpacing: 6,
+                        spacing: MediaQuery.of(context).size.width * 0.015,
+                        runSpacing: MediaQuery.of(context).size.width * 0.015,
                         children: movie.movieTags!
                             .map((tag) => Chip(
                                   label: Text(
@@ -129,7 +149,10 @@ class SearchResultsPage extends StatelessWidget {
                                         .toString()
                                         .toLowerCase()
                                         .translate(context),
-                                    style: const TextStyle(fontSize: 10),
+                                    style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.025),
                                   ),
                                   padding: EdgeInsets.zero,
                                   materialTapTargetSize:
@@ -145,10 +168,11 @@ class SearchResultsPage extends StatelessWidget {
 
             /// -- ARROW ICON --
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(customPadding * 0.5),
               child: Icon(
                 Iconsax.arrow_right_3,
                 color: dark ? HMColors.white : HMColors.black,
+                size: iconSize,
               ),
             ),
           ],

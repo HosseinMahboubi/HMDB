@@ -23,15 +23,29 @@ class HMTrailer extends StatelessWidget {
     /// -- INITIALIZE THE CONTROLLER --
     final DetailsController controller = Get.find<DetailsController>(tag: tag);
 
+    /// --- Responsive dimensions ---
+    final double verticalPadding =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double thumbnailHeight =
+        MediaQuery.of(context).size.height * 0.25; // ~25% of screen height
+    final double borderRadius =
+        MediaQuery.of(context).size.width * 0.03; // ~3% of screen width
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.1; // ~10% of screen width
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: EdgeInsets.symmetric(
+          vertical: verticalPadding, horizontal: horizontalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "trailer".translate(context),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontSize: 20,
+                  fontSize: MediaQuery.of(context).size.width *
+                      0.05, // ~5% of screen width
                   fontWeight: FontWeight.w500,
                 ),
           ),
@@ -45,10 +59,10 @@ class HMTrailer extends StatelessWidget {
               children: [
                 /// --- Trailer thumbnail image ---
                 Container(
-                  height: 200,
+                  height: thumbnailHeight,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(borderRadius),
                     image: DecorationImage(
                       image: AssetImage(
                         movie.movieTrailer ?? "assets/images/main/trailer.jpeg",
@@ -60,7 +74,7 @@ class HMTrailer extends StatelessWidget {
 
                 /// -- PLAY BUTTON OVERLAY --
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(iconSize * 0.4), // ~40% of icon size
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.5),
                     shape: BoxShape.circle,
@@ -70,7 +84,7 @@ class HMTrailer extends StatelessWidget {
                     color: HMHelperFunction.isDarkMode(context)
                         ? Colors.white
                         : HMColors.primary,
-                    size: 40,
+                    size: iconSize,
                   ),
                 ),
               ],

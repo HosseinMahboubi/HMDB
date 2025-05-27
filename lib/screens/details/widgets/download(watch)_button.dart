@@ -24,6 +24,14 @@ class HMDownloadWatchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
 
+    /// --- Responsive dimensions ---
+    final double paddingVertical =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double paddingHorizontal =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double blurRadius =
+        MediaQuery.of(context).size.width * 0.03; // ~3% of screen width
+
     /// -- INITIALIZE THE CONTROLLER --
     final DetailsController controller = Get.find<DetailsController>(tag: tag);
 
@@ -32,9 +40,9 @@ class HMDownloadWatchButton extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: HMSizes.defaultSpace,
-          vertical: HMSizes.defaultSpace / 2,
+        padding: EdgeInsets.symmetric(
+          horizontal: paddingHorizontal,
+          vertical: paddingVertical,
         ),
         decoration: BoxDecoration(
           color: dark ? HMColors.darkerGrey : Colors.white,
@@ -45,7 +53,7 @@ class HMDownloadWatchButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
+              blurRadius: blurRadius,
               offset: const Offset(0, -5),
             ),
           ],

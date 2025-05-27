@@ -22,6 +22,14 @@ class HMNavigationDrawerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double avatarRadius =
+        MediaQuery.of(context).size.width * 0.1; // ~10% of screen width
+    final double fontSize =
+        MediaQuery.of(context).size.width * 0.055; // ~5.5% of screen width
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return DrawerHeader(
       decoration: BoxDecoration(
         color: dark ? HMColors.black : HMColors.primary,
@@ -33,21 +41,21 @@ class HMNavigationDrawerHeader extends StatelessWidget {
           Obx(() {
             final currentImage = profileController.profileImage.value;
             return CircleAvatar(
-              radius: 36,
+              radius: avatarRadius,
               backgroundImage: currentImage.startsWith('assets')
                   ? AssetImage(currentImage)
                   : FileImage(File(currentImage)) as ImageProvider,
               backgroundColor: dark ? HMColors.darkerGrey : HMColors.lightGrey,
             );
           }),
-          const SizedBox(height: 16),
+          SizedBox(height: spacing),
           Text(
             "welcome_user"
                 .translate(context)
                 .replaceAll("{username}", username),
             style: TextStyle(
               color: dark ? HMColors.primary : HMColors.white,
-              fontSize: 22,
+              fontSize: fontSize,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,

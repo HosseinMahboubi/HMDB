@@ -14,17 +14,23 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive dimensions ----
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(HMSizes.defaultSpace),
+          padding: EdgeInsets.all(
+              MediaQuery.of(context).size.width * 0.05), // ~5% of screen width
           child: Column(
             children: [
               /// -- TITLE --
               const HMSignText(signText: 'sign_up'),
 
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// -- SUBTITLE --
               Text(
@@ -32,19 +38,19 @@ class SignupScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
 
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// -- FORM --
               HMSignupForm(dark: dark),
 
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// -- DIVIDER --
               HMFormDivider(
                 dark: dark,
                 dividerText: 'or_sign_up_with'.translate(context).capitalize!,
               ),
-              const SizedBox(height: HMSizes.spaceBtwSections / 2),
+              SizedBox(height: spacing / 2),
 
               /// -- SOCIAL BUTTONS --
               const HMSocialButtons()

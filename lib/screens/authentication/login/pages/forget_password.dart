@@ -17,11 +17,17 @@ class ForgetPassword extends StatelessWidget {
 
     final dark = HMHelperFunction.isDarkMode(context);
 
+    /// --- Responsive dimensions ---
+    final double padding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double buttonHeight =
+        MediaQuery.of(context).size.height * 0.06; // ~6% of screen height
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(HMSizes.defaultSpace),
+          padding: EdgeInsets.all(padding),
           child: Form(
             key: controller.formKey, // --- Using Controller --
             child: Column(
@@ -32,7 +38,9 @@ class ForgetPassword extends StatelessWidget {
                   'forget_password'.translate(context),
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
-                const SizedBox(height: HMSizes.spaceBtwItems),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.02), // ~2% of screen height
 
                 /// -- SUBTITLE --
                 RichText(
@@ -43,13 +51,16 @@ class ForgetPassword extends StatelessWidget {
                               ? HMColors.white.withOpacity(0.7)
                               : HMColors.textSecondary,
                           height: 1.5,
-                          fontSize: 14,
+                          fontSize: MediaQuery.of(context).size.width *
+                              0.035, // ~3.5% of screen width
                         ),
                     text: "forget_password_subtitle".translate(context),
                   ),
                 ),
 
-                const SizedBox(height: HMSizes.spaceBtwSections * 2),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.03), // ~3% of screen height
 
                 /// -- TEXT FIELD --
                 TextFormField(
@@ -68,7 +79,9 @@ class ForgetPassword extends StatelessWidget {
                   },
                 ),
 
-                const SizedBox(height: HMSizes.spaceBtwSections),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.02), // ~2% of screen height
 
                 // -- SUBMIT BUTTON --
                 SizedBox(
@@ -89,6 +102,8 @@ class ForgetPassword extends StatelessWidget {
                         color: dark ? HMColors.darkerGrey : Colors.transparent,
                         width: 0,
                       ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: buttonHeight * 0.5), // ~3% of screen height
                     ),
                     child: Text('submit'.translate(context)),
                   ),

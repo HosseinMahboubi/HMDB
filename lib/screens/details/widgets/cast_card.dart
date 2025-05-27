@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
 
 Widget castCard(Map cast, BuildContext context) {
@@ -10,27 +9,35 @@ Widget castCard(Map cast, BuildContext context) {
   /// -- GET THE TRANSLATED NAME IF AVAILABLE --
   String displayName = nameKey.isNotEmpty ? nameKey.translate(context) : name;
 
+  /// --- Responsive dimensions ---
+  final double imageSize =
+      MediaQuery.of(context).size.width * 0.25; // ~25% of screen width
+  final double borderRadius =
+      MediaQuery.of(context).size.width * 0.025; // ~2.5% of screen width
+  final double spacing =
+      MediaQuery.of(context).size.height * 0.01; // ~1% of screen height
+
   return Padding(
-    padding: const EdgeInsets.only(right: 10),
+    padding: EdgeInsets.only(
+        right:
+            MediaQuery.of(context).size.width * 0.025), // ~2.5% of screen width
     child: Column(
       children: [
         /// -- CAST IMAGE --
         Container(
-          height: 100,
-          width: 100,
+          height: imageSize,
+          width: imageSize,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(borderRadius),
             image: DecorationImage(
               image: AssetImage(cast['image']),
               fit: BoxFit.cover,
             ),
           ),
         ),
-        const SizedBox(height: HMSizes.spaceBtwItems / 2 + 2),
-
-        /// -- CAST NAME --
+        SizedBox(height: spacing),
         SizedBox(
-          width: 100,
+          width: imageSize,
           child: Text(
             displayName,
             textAlign: TextAlign.center,

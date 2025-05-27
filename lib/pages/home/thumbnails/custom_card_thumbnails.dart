@@ -28,6 +28,10 @@ class CustomCardThumbnails extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
 
+    /// --- Responsive border radius ---
+    final double borderRadius =
+        MediaQuery.of(context).size.width * 0.04; // --- ~4% of screen width ---
+
     return GestureDetector(
       onTap: () {
         if (movieModel != null) {
@@ -41,7 +45,7 @@ class CustomCardThumbnails extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             BoxShadow(
               color: dark
@@ -53,7 +57,7 @@ class CustomCardThumbnails extends StatelessWidget {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(borderRadius),
           child: Stack(
             children: [
               /// -- MOVIE IMAGE --
@@ -62,7 +66,7 @@ class CustomCardThumbnails extends StatelessWidget {
               /// --- Gradient overlay ---
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(borderRadius),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

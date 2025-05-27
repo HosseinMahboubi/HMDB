@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hmdb/screens/authentication/signup/controller/sign_up_controller.dart';
 import 'package:hmdb/utils/constants/colors.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
 
 class HMTermsAndConditionCheckbox extends StatelessWidget {
@@ -17,11 +16,18 @@ class HMTermsAndConditionCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     /// -- INITIALIZE THE CONTROLLERS --
     final controller = Get.put(SignUpController());
+
+    /// --- Responsive dimensions ---
+    final double checkboxSize =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double spacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+
     return Row(
       children: [
         SizedBox(
-          width: 24,
-          height: 24,
+          width: checkboxSize,
+          height: checkboxSize,
           child: Obx(
             () => Checkbox(
               value: controller.agreeToTerms.value,
@@ -29,7 +35,7 @@ class HMTermsAndConditionCheckbox extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: HMSizes.spaceBtwItems),
+        SizedBox(width: spacing),
         Text.rich(
           TextSpan(
             children: [

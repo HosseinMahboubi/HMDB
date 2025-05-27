@@ -12,10 +12,20 @@ class HMDetailsMovieInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double bottomPosition =
+        MediaQuery.of(context).size.height * 0.03; // ~3% of screen height
+    final double sideMargin =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double spacing =
+        MediaQuery.of(context).size.width * 0.025; // ~2.5% of screen width
+
     return Positioned(
-      bottom: 20,
-      left: 20,
-      right: 20,
+      bottom: bottomPosition,
+      left: sideMargin,
+      right: sideMargin,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -41,11 +51,11 @@ class HMDetailsMovieInfo extends StatelessWidget {
                       color: HMColors.white,
                     ),
               ),
-              const SizedBox(width: 10),
-              const Icon(
+              SizedBox(width: spacing),
+              Icon(
                 Icons.star,
                 color: Colors.amber,
-                size: 20,
+                size: iconSize,
               ),
             ],
           )

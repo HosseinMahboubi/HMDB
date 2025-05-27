@@ -5,7 +5,6 @@ import 'package:hmdb/screens/navigation/controller/navigation_controller.dart';
 import 'package:hmdb/pages/navigation%20pages/widgets/navigation_pages_header.dart';
 import 'package:hmdb/screens/details/details_screen.dart';
 import 'package:hmdb/utils/constants/colors.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
 import 'package:iconsax/iconsax.dart';
@@ -18,6 +17,12 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
     final controller = Get.put(FavoriteController());
+
+    /// --- Responsive padding and spacing ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double gridSpacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
 
     return PopScope(
       canPop: false,
@@ -51,11 +56,14 @@ class FavoritePage extends StatelessWidget {
                         children: [
                           Icon(
                             Iconsax.heart,
-                            size: 64,
+                            size: MediaQuery.of(context).size.width *
+                                0.16, // ~16% of screen width
                             color:
                                 dark ? HMColors.lightGrey : HMColors.darkGrey,
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.02), // ~2% of screen height
                           Text(
                             "no_favorites_yet".translate(context),
                             style: Theme.of(context)
@@ -65,7 +73,9 @@ class FavoritePage extends StatelessWidget {
                                   color: dark ? HMColors.white : HMColors.black,
                                 ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.01), // ~1% of screen height
                           Text(
                             "add_movies_to_your_favorite_to_see_them_here"
                                 .translate(context),
@@ -85,13 +95,12 @@ class FavoritePage extends StatelessWidget {
                   }
 
                   return GridView.builder(
-                    padding: const EdgeInsets.all(HMSizes.defaultSpace),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    padding: EdgeInsets.all(defaultPadding),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.7,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: gridSpacing,
+                      mainAxisSpacing: gridSpacing,
                     ),
                     itemCount: controller.favoriteMovies.length,
                     itemBuilder: (context, index) {
@@ -119,12 +128,17 @@ class FavoritePage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: dark ? HMColors.darkerGrey : HMColors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(
+              MediaQuery.of(context).size.width * 0.03), // ~3% of screen width
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              blurRadius: MediaQuery.of(context).size.width *
+                  0.02, // ~2% of screen width
+              offset: Offset(
+                  0,
+                  MediaQuery.of(context).size.height *
+                      0.002), // ~0.2% of screen height
             ),
           ],
         ),
@@ -139,9 +153,13 @@ class FavoritePage extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(
+                            MediaQuery.of(context).size.width *
+                                0.03), // ~3% of screen width
+                        topRight: Radius.circular(
+                            MediaQuery.of(context).size.width *
+                                0.03), // ~3% of screen width
                       ),
                       image: DecorationImage(
                         image: AssetImage(movie.imageAsset ?? ""),
@@ -152,22 +170,27 @@ class FavoritePage extends StatelessWidget {
 
                   /// -- FAVORITE BUTTON --
                   Positioned(
-                    top: 8,
-                    left: 8,
+                    top: MediaQuery.of(context).size.height *
+                        0.01, // ~1% of screen height
+                    left: MediaQuery.of(context).size.width *
+                        0.02, // ~2% of screen width
                     child: GestureDetector(
                       onTap: () {
                         controller.toggleFavorite(movie);
                       },
                       child: Container(
-                        padding: const EdgeInsets.all(6),
+                        padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width *
+                                0.015), // ~1.5% of screen width
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.6),
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Iconsax.heart5,
                           color: Colors.red,
-                          size: 20,
+                          size: MediaQuery.of(context).size.width *
+                              0.05, // ~5% of screen width
                         ),
                       ),
                     ),
@@ -178,7 +201,8 @@ class FavoritePage extends StatelessWidget {
 
             /// -- MOVIE INFO --
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width *
+                  0.02), // ~2% of screen width
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -191,15 +215,20 @@ class FavoritePage extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.005), // ~0.5% of screen height
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.star,
                         color: Colors.amber,
-                        size: 16,
+                        size: MediaQuery.of(context).size.width *
+                            0.04, // ~4% of screen width
                       ),
-                      const SizedBox(width: 4),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width *
+                              0.01), // ~1% of screen width
                       Text(
                         movie.movieRating ?? "0.0",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -207,7 +236,9 @@ class FavoritePage extends StatelessWidget {
                                   dark ? HMColors.lightGrey : HMColors.darkGrey,
                             ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width *
+                              0.02), // ~2% of screen width
                       Text(
                         movie.year ?? "",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(

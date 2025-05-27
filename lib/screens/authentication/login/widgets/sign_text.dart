@@ -11,12 +11,19 @@ class HMSignText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive font size ---
+    final double fontSize =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           signText.translate(context),
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontSize: fontSize),
         ),
       ],
     );

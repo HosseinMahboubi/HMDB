@@ -17,8 +17,14 @@ class HMNavigationPageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive padding ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // --- ~6% of screen width ---
+    final double spacing = MediaQuery.of(context).size.height *
+        0.01; // --- ~1% of screen height ---
+
     return Padding(
-      padding: const EdgeInsets.all(HMSizes.defaultSpace),
+      padding: EdgeInsets.all(defaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,7 +35,7 @@ class HMNavigationPageHeader extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: spacing),
           Text(
             AppLocalizations.of(context).translate(subText),
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(

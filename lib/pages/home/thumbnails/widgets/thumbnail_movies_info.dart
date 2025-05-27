@@ -14,10 +14,14 @@ class HMThumbnailsMovieInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive padding ---
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+
     return Positioned(
       bottom: 0,
-      left: 16,
-      right: 16,
+      left: horizontalPadding,
+      right: horizontalPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

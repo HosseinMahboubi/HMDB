@@ -142,6 +142,14 @@ class ProfilePage extends StatelessWidget {
 
     final dark = HMHelperFunction.isDarkMode(context);
 
+    /// --- Responsive padding and sizes ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double cardRadius =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+    final double profileImageRadius =
+        MediaQuery.of(context).size.width * 0.12; // ~12% of screen width
+
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
@@ -156,7 +164,7 @@ class ProfilePage extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(HMSizes.defaultSpace),
+              padding: EdgeInsets.all(defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -168,14 +176,17 @@ class ProfilePage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  const SizedBox(height: HMSizes.spaceBtwItems),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.02), // ~2% of screen height
 
                   /// -- PROFILE CARD --
                   Container(
-                    padding: const EdgeInsets.all(HMSizes.md),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width *
+                        0.04), // ~4% of screen width
                     decoration: BoxDecoration(
                       color: dark ? HMColors.darkerGrey : Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(HMSizes.cardRadiusLg),
+                      borderRadius: BorderRadius.circular(cardRadius),
                       border: dark
                           ? null
                           : Border.all(
@@ -186,8 +197,11 @@ class ProfilePage extends StatelessWidget {
                           : [
                               BoxShadow(
                                 color: Colors.grey.shade200,
-                                blurRadius: 5,
-                                spreadRadius: 1,
+                                blurRadius: MediaQuery.of(context).size.width *
+                                    0.02, // ~2% of screen width
+                                spreadRadius:
+                                    MediaQuery.of(context).size.width *
+                                        0.005, // ~0.5% of screen width
                               )
                             ],
                     ),
@@ -196,14 +210,16 @@ class ProfilePage extends StatelessWidget {
                         /// --- Profile Image ---
                         Obx(
                           () => CircleAvatar(
-                            radius: 50,
+                            radius: profileImageRadius,
                             backgroundImage:
                                 AssetImage(controller.profileImage.value),
                             backgroundColor:
                                 dark ? HMColors.darkerGrey : HMColors.lightGrey,
                           ),
                         ),
-                        const SizedBox(height: HMSizes.spaceBtwItems),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height *
+                                0.02), // ~2% of screen height
 
                         /// -- USERNAME --
                         Obx(() => Text(
@@ -233,7 +249,9 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(height: HMSizes.spaceBtwItems),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height *
+                                0.02), // ~2% of screen height
 
                         /// -- EDIT PROFILE BUTTON --
                         SizedBox(
@@ -248,9 +266,11 @@ class ProfilePage extends StatelessWidget {
                               foregroundColor:
                                   dark ? HMColors.black : HMColors.white,
                               elevation: 0,
-                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height *
+                                      0.02), // ~2% of screen height
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(cardRadius),
                                 side: BorderSide(
                                   color: dark
                                       ? Colors.transparent
@@ -263,9 +283,10 @@ class ProfilePage extends StatelessWidget {
                             ),
                             child: Text(
                               "edit_profile".translate(context),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16,
+                                fontSize: MediaQuery.of(context).size.width *
+                                    0.04, // ~4% of screen width
                               ),
                             ),
                           ),
@@ -274,7 +295,9 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: HMSizes.spaceBtwSections),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.03), // ~3% of screen height
 
                   /// -- SETTING SECTION --
                   Text(
@@ -285,7 +308,9 @@ class ProfilePage extends StatelessWidget {
                           letterSpacing: 0.5,
                         ),
                   ),
-                  const SizedBox(height: HMSizes.spaceBtwItems),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.02), // ~2% of screen height
 
                   /// -- SETTING LIST --
                   _buildSettingsTile(

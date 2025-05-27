@@ -21,6 +21,11 @@ class HMSignupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     /// -- INITIALIZE THE CONTROLLERS --
     final controller = Get.put(SignUpController());
+
+    /// --- Responsive dimensions ---
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return Form(
       child: Column(
         children: [
@@ -34,7 +39,7 @@ class HMSignupForm extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: HMSizes.spaceBtwInputFields),
+          SizedBox(height: spacing),
 
           /// -- EMAIL --
           TextFormField(
@@ -46,7 +51,7 @@ class HMSignupForm extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: HMSizes.spaceBtwInputFields),
+          SizedBox(height: spacing),
 
           /// -- PASSWORD --
           Obx(
@@ -68,7 +73,7 @@ class HMSignupForm extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: HMSizes.spaceBtwInputFields),
+          SizedBox(height: spacing),
 
           /// -- CONFIRM PASSWORD --
           Obx(
@@ -90,7 +95,7 @@ class HMSignupForm extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: HMSizes.spaceBtwInputFields),
+          SizedBox(height: spacing),
 
           /// -- PHONE NUMBER --
           Row(
@@ -111,7 +116,7 @@ class HMSignupForm extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: HMSizes.spaceBtwInputFields / 2),
+              SizedBox(width: spacing / 2),
               Expanded(
                 flex: 3,
                 child: TextFormField(
@@ -125,12 +130,12 @@ class HMSignupForm extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: HMSizes.spaceBtwSections),
+          SizedBox(height: spacing),
 
           /// -- TERMS AND CONDITION CHECKBOX --
           HMTermsAndConditionCheckbox(dark: dark),
 
-          const SizedBox(height: HMSizes.spaceBtwSections),
+          SizedBox(height: spacing),
 
           /// -- SIGN UP BUTTON --
           SizedBox(

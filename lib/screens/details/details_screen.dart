@@ -35,6 +35,14 @@ class DetailsScreen extends StatelessWidget {
       tag: movie.movieName ?? movie.hashCode.toString(),
     );
 
+    /// --- Responsive dimensions ---
+    final double posterHeight =
+        MediaQuery.of(context).size.height * 0.6; // ~60% of screen height
+    final double borderRadius =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double horizontalMargin =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+
     return Scaffold(
       body: Container(
         color: isDark ? Colors.transparent : HMColors.lightContainer,
@@ -49,7 +57,7 @@ class DetailsScreen extends StatelessWidget {
                       /// --- Movie poster image with gradient ---
                       Container(
                         foregroundDecoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
+                          borderRadius: BorderRadius.circular(borderRadius),
                           gradient: LinearGradient(
                             colors: [
                               HMColors.blackBackGround.withOpacity(0.8),
@@ -60,7 +68,7 @@ class DetailsScreen extends StatelessWidget {
                           ),
                         ),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.60,
+                        height: posterHeight,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
@@ -79,7 +87,7 @@ class DetailsScreen extends StatelessWidget {
 
                   /// --- Holds the rest of the movie details ---
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -99,7 +107,6 @@ class DetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: HMSizes.spaceBtwItems),
 
                         /// -- MOVIE DETAILS SUMMARY --

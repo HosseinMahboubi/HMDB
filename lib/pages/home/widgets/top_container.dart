@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hmdb/utils/constants/colors.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/device/device_utility.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
@@ -15,10 +14,14 @@ class HMTopContainer extends StatelessWidget {
     // -- DEVICE UTILS FOR SCREEN DIMENSIONS --
     final screenWidth = HMDeviceUtils.getScreenWidth(context);
 
+    /// --- Responsive padding ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // --- ~6% of screen width ---
+
     return SizedBox(
       width: screenWidth,
       child: Padding(
-        padding: const EdgeInsets.all(HMSizes.defaultSpace),
+        padding: EdgeInsets.all(defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

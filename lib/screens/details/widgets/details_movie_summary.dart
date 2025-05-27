@@ -14,8 +14,15 @@ class HMDetailsMovieSum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double verticalPadding =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+      padding: EdgeInsets.symmetric(
+          vertical: verticalPadding, horizontal: horizontalPadding),
       child: ReadMoreText(
         movieSummary!,
         trimLines: 3,

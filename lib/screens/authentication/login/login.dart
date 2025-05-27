@@ -16,6 +16,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive dimensions ---
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -23,21 +28,21 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: HMSizes.spaceBtwItems),
+              SizedBox(height: spacing),
 
               /// --- Increased spacing before the Sign In Text ---
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// -- SIGN IN TEXT --
               const HMSignText(signText: "sign_in"),
 
               // --- Reduced spacing ---
-              const SizedBox(height: HMSizes.spaceBtwSections * 2),
+              SizedBox(height: spacing * 2),
 
               /// -- TITLE AND SUB-TITLE --
               const HMLoginHeader(),
 
-              const SizedBox(height: HMSizes.spaceBtwSections / 2),
+              SizedBox(height: spacing / 2),
 
               /// -- FORM --
               HMLoginForm(dark: dark),
@@ -48,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                   dividerText:
                       'or_sign_in_with'.translate(context).capitalize!),
 
-              const SizedBox(height: HMSizes.spaceBtwSections / 2),
+              SizedBox(height: spacing / 2),
 
               /// -- FOOTER --
               const HMSocialButtons(),

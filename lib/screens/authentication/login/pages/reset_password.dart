@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hmdb/screens/authentication/login/login.dart';
 import 'package:hmdb/utils/constants/colors.dart';
 import 'package:hmdb/utils/constants/image_strings.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
 import 'package:hmdb/utils/localization/translation_extension.dart';
 
@@ -15,6 +14,15 @@ class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive dimensions ---
+    final double imageWidth =
+        MediaQuery.of(context).size.width * 0.6; // ~60% of screen width
+    final double padding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double buttonHeight =
+        MediaQuery.of(context).size.height * 0.06; // ~6% of screen height
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -27,17 +35,19 @@ class ResetPassword extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(HMSizes.defaultSpace),
+          padding: EdgeInsets.all(padding),
           child: Column(
             children: [
               /// -- SVG IMAGE --
               Center(
                 child: SvgPicture.asset(
                   HMImages.resendEmail,
-                  width: HMHelperFunction.screenWidth() * 0.6,
+                  width: imageWidth,
                 ),
               ),
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.03), // ~3% of screen height
 
               /// -- TITLE AND SUBTITLE --
               Text(
@@ -45,13 +55,17 @@ class ResetPassword extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: HMSizes.spaceBtwItems),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.02), // ~2% of screen height
               Text(
                 'change_your_password_subtitle'.translate(context),
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.03), // ~3% of screen height
 
               /// -- BUTTONS --
               SizedBox(
@@ -67,11 +81,15 @@ class ResetPassword extends StatelessWidget {
                       color: dark ? HMColors.darkerGrey : Colors.transparent,
                       width: 0,
                     ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: buttonHeight * 0.5), // ~3% of screen height
                   ),
                   child: Text('done'.translate(context)),
                 ),
               ),
-              const SizedBox(height: HMSizes.spaceBtwItems),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.02), // ~2% of screen height
               SizedBox(
                 width: double.infinity,
                 child: TextButton(

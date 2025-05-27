@@ -11,8 +11,15 @@ class HMComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double verticalPadding =
+        MediaQuery.of(context).size.height * 0.01; // ~1% of screen height
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding, vertical: verticalPadding),
       child: Column(
         children: [
           /// -- COMMENT STARTER => COMMENTS AND SEE ALL SECTION --
@@ -22,7 +29,8 @@ class HMComment extends StatelessWidget {
               Text(
                 "comments".translate(context),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 20,
+                      fontSize: MediaQuery.of(context).size.width *
+                          0.05, // ~5% of screen width
                       fontWeight: FontWeight.w500,
                     ),
               ),
@@ -43,8 +51,9 @@ class HMComment extends StatelessWidget {
 
           /// -- BUILD COMMENT CARD --
           HMBuildCommentCard(),
-
-          SizedBox(height: HMHelperFunction.screenHeight() * 0.15),
+          SizedBox(
+              height: MediaQuery.of(context).size.height *
+                  0.15), // ~15% of screen height
         ],
       ),
     );

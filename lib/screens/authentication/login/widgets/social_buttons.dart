@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hmdb/utils/constants/colors.dart';
 import 'package:hmdb/utils/constants/image_strings.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
 
 class HMSocialButtons extends StatelessWidget {
@@ -13,6 +12,12 @@ class HMSocialButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
 
+    /// --- Responsive dimensions ---
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.08; // ~8% of screen width
+    final double spacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -23,14 +28,14 @@ class HMSocialButtons extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: () {},
-            icon: const Image(
-              width: HMSizes.iconLg,
-              height: HMSizes.iconLg,
-              image: AssetImage(HMImages.facebook),
+            icon: Image.asset(
+              HMImages.facebook,
+              width: iconSize,
+              height: iconSize,
             ),
           ),
         ),
-        const SizedBox(width: HMSizes.spaceBtwItems),
+        SizedBox(width: spacing),
         Container(
           decoration: BoxDecoration(
             border: Border.all(color: dark ? HMColors.darkGrey : HMColors.grey),
@@ -38,14 +43,14 @@ class HMSocialButtons extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: () {},
-            icon: const Image(
-              width: HMSizes.iconLg,
-              height: HMSizes.iconLg,
-              image: AssetImage(HMImages.google),
+            icon: Image.asset(
+              HMImages.google,
+              width: iconSize,
+              height: iconSize,
             ),
           ),
         ),
-        const SizedBox(width: HMSizes.spaceBtwItems),
+        SizedBox(width: spacing),
         Container(
           decoration: BoxDecoration(
             border: Border.all(color: dark ? HMColors.darkGrey : HMColors.grey),
@@ -55,8 +60,8 @@ class HMSocialButtons extends StatelessWidget {
             onPressed: () {},
             icon: Image.asset(
               HMImages.x,
-              width: HMSizes.iconLg,
-              height: HMSizes.iconLg,
+              width: iconSize,
+              height: iconSize,
             ),
           ),
         ),

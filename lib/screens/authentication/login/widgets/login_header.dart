@@ -9,6 +9,10 @@ class HMLoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -20,7 +24,7 @@ class HMLoginHeader extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: HMSizes.spaceBtwItems),
+            SizedBox(height: spacing),
             Center(
               child: Text(
                 "login_subtitle".translate(context),

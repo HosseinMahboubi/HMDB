@@ -8,9 +8,19 @@ class HMCloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double topPosition =
+        MediaQuery.of(context).size.height * 0.05; // ~5% of screen height
+    final double rightPosition =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.07; // ~7% of screen width
+    final double padding =
+        MediaQuery.of(context).size.width * 0.02; // ~2% of screen width
+
     return Positioned(
-      top: 40,
-      right: 15,
+      top: topPosition,
+      right: rightPosition,
       child: Material(
         color: Colors.transparent,
         shape: const CircleBorder(),
@@ -19,15 +29,15 @@ class HMCloseButton extends StatelessWidget {
           customBorder: const CircleBorder(),
           onTap: () => Navigator.of(context).pop(),
           child: Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(padding),
             decoration: BoxDecoration(
               color: HMColors.primary.withOpacity(0.9),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
+            child: Icon(
               Icons.close,
               color: Colors.white,
-              size: 28,
+              size: iconSize,
             ),
           ),
         ),

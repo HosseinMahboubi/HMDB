@@ -3,7 +3,6 @@ import 'package:hmdb/data/movies.dart';
 import 'package:hmdb/pages/home/controllers/favorite_controller.dart';
 import 'package:hmdb/screens/navigation/controller/navigation_controller.dart';
 import 'package:hmdb/pages/navigation%20pages/widgets/navigation_pages_header.dart';
-import 'package:hmdb/utils/constants/sizes.dart';
 import 'package:hmdb/utils/constants/colors.dart';
 import 'package:hmdb/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
@@ -18,6 +17,12 @@ class PersianMoviesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive padding and spacing ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double gridSpacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
 
     return PopScope(
       canPop: true,
@@ -45,12 +50,12 @@ class PersianMoviesPage extends StatelessWidget {
               /// -- MOVIE GRID --
               Expanded(
                 child: GridView.builder(
-                  padding: const EdgeInsets.all(HMSizes.defaultSpace),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  padding: EdgeInsets.all(defaultPadding),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.7,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+                    crossAxisSpacing: gridSpacing,
+                    mainAxisSpacing: gridSpacing,
                   ),
                   itemCount: persianMovieImages.length,
                   itemBuilder: (context, index) {
@@ -67,7 +72,6 @@ class PersianMoviesPage extends StatelessWidget {
   }
 
   Widget _buildMovieCard(BuildContext context, MovieModel movie) {
-    final dark = HMHelperFunction.isDarkMode(context);
     final favoriteController = Get.put(FavoriteController());
 
     return GestureDetector(
@@ -80,7 +84,9 @@ class PersianMoviesPage extends StatelessWidget {
           /// -- MOVIE POSTER --
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(
+                  MediaQuery.of(context).size.width *
+                      0.04), // ~4% of screen width
               image: DecorationImage(
                 image: AssetImage(movie.imageAsset!),
                 fit: BoxFit.cover,
@@ -88,8 +94,12 @@ class PersianMoviesPage extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.3),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
+                  blurRadius: MediaQuery.of(context).size.width *
+                      0.025, // ~2.5% of screen width
+                  offset: Offset(
+                      0,
+                      MediaQuery.of(context).size.height *
+                          0.005), // ~0.5% of screen height
                 ),
               ],
             ),
@@ -100,14 +110,17 @@ class PersianMoviesPage extends StatelessWidget {
 
           /// -- ADD FAVORITE BUTTON --
           Positioned(
-            top: 0,
-            left: 8,
+            top: MediaQuery.of(context).size.height *
+                0.01, // ~1% of screen height
+            left:
+                MediaQuery.of(context).size.width * 0.02, // ~2% of screen width
             child: GestureDetector(
               onTap: () {
                 favoriteController.toggleFavorite(movie);
               },
               child: Container(
-                padding: const EdgeInsets.all(6),
+                padding: EdgeInsets.all(MediaQuery.of(context).size.width *
+                    0.015), // ~1.5% of screen width
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.6),
                   shape: BoxShape.circle,
@@ -119,7 +132,8 @@ class PersianMoviesPage extends StatelessWidget {
                       color: favoriteController.isFavorite(movie)
                           ? Colors.red
                           : Colors.white,
-                      size: 18,
+                      size: MediaQuery.of(context).size.width *
+                          0.045, // ~4.5% of screen width
                     )),
               ),
             ),
@@ -127,9 +141,12 @@ class PersianMoviesPage extends StatelessWidget {
 
           /// -- MOVIE INFO --
           Positioned(
-            bottom: 12,
-            left: 12,
-            right: 12,
+            bottom: MediaQuery.of(context).size.height *
+                0.015, // ~1.5% of screen height
+            left:
+                MediaQuery.of(context).size.width * 0.03, // ~3% of screen width
+            right:
+                MediaQuery.of(context).size.width * 0.03, // ~3% of screen width
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -137,34 +154,44 @@ class PersianMoviesPage extends StatelessWidget {
                   movie.getTranslatedName(context),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: MediaQuery.of(context).size.width *
+                        0.035, // ~3.5% of screen width
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.005), // ~0.5% of screen height
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.star,
                       color: Colors.amber,
-                      size: 16,
+                      size: MediaQuery.of(context).size.width *
+                          0.04, // ~4% of screen width
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width *
+                            0.01), // ~1% of screen width
                     Text(
                       movie.movieRating ?? 'N/A',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.03, // ~3% of screen width
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width *
+                            0.02), // ~2% of screen width
                     Text(
                       movie.year ?? '',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 12,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.03, // ~3% of screen width
                       ),
                     ),
                   ],

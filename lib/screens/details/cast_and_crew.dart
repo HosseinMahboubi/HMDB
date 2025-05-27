@@ -12,21 +12,32 @@ class CastAndCrew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// --- Responsive dimensions ---
+    final double verticalPadding =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double listHeight =
+        MediaQuery.of(context).size.height * 0.2; // ~20% of screen height
+    final double fontSize =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: EdgeInsets.symmetric(
+          vertical: verticalPadding, horizontal: horizontalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "cast".translate(context),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontSize: 20,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: verticalPadding),
           SizedBox(
-            height: 160,
+            height: listHeight,
             child: ListView.builder(
               itemCount: casts.length,
               shrinkWrap: true,

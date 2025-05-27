@@ -58,6 +58,12 @@ class GenrePage extends StatelessWidget {
       },
     ];
 
+    /// --- Responsive padding and spacing ---
+    final double defaultPadding =
+        MediaQuery.of(context).size.width * 0.06; // ~6% of screen width
+    final double gridSpacing =
+        MediaQuery.of(context).size.width * 0.04; // ~4% of screen width
+
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) {
@@ -76,7 +82,7 @@ class GenrePage extends StatelessWidget {
             children: [
               /// -- HEADER --
               Padding(
-                padding: const EdgeInsets.all(HMSizes.defaultSpace),
+                padding: EdgeInsets.all(defaultPadding),
                 child: Text(
                   'movie_genres'.translate(context),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -88,9 +94,7 @@ class GenrePage extends StatelessWidget {
 
               /// -- SUBTITLE --
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: HMSizes.defaultSpace,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                 child: Text(
                   'explore_genres'.translate(context),
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -99,18 +103,19 @@ class GenrePage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.04), // ~4% of screen height
 
               /// -- GENRE GRID --
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(HMSizes.defaultSpace),
+                  padding: EdgeInsets.all(defaultPadding),
                   child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: gridSpacing,
+                      mainAxisSpacing: gridSpacing,
                       childAspectRatio: 0.8,
                     ),
                     itemCount: genres.length,
@@ -148,8 +153,8 @@ class GenrePage extends StatelessWidget {
 
                             /// --- GENRE NAME ---
                             Positioned(
-                              bottom: 16,
-                              left: 16,
+                              bottom: defaultPadding,
+                              left: defaultPadding,
                               child: Text(
                                 genres[index]['name'],
                                 style: const TextStyle(

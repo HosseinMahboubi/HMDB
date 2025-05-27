@@ -30,12 +30,22 @@ class HMSearchBar extends StatelessWidget {
     final textController =
         TextEditingController(text: searchController.searchQuery.value);
 
+    /// --- Responsive dimensions ---
+    final double borderRadius =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double iconSize =
+        MediaQuery.of(context).size.width * 0.055; // ~5.5% of screen width
+    final double horizontalPadding =
+        MediaQuery.of(context).size.width * 0.05; // ~5% of screen width
+    final double verticalPadding =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+
     return Padding(
-      padding: const EdgeInsets.all(HMSizes.defaultSpace),
+      padding: EdgeInsets.all(horizontalPadding),
       child: Container(
         decoration: BoxDecoration(
           color: isDark ? HMColors.darkContainer : HMColors.lightContainer,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: TextField(
           controller: textController,
@@ -63,7 +73,7 @@ class HMSearchBar extends StatelessWidget {
             prefixIcon: Icon(
               Iconsax.search_normal,
               color: isDark ? HMColors.textSecondary : HMColors.grey,
-              size: 22,
+              size: iconSize,
             ),
             suffixIcon: Obx(() {
               if (searchController.searchQuery.isNotEmpty) {
@@ -71,7 +81,7 @@ class HMSearchBar extends StatelessWidget {
                   icon: Icon(
                     Iconsax.close_circle,
                     color: isDark ? HMColors.textSecondary : HMColors.grey,
-                    size: 22,
+                    size: iconSize,
                   ),
                   onPressed: () {
                     /// -- CLEAR THE SEARCH CONTROLLER --
@@ -88,9 +98,9 @@ class HMSearchBar extends StatelessWidget {
               return const SizedBox.shrink();
             }),
             border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 16,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
             ),
           ),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(

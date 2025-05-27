@@ -21,22 +21,29 @@ class SuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HMHelperFunction.isDarkMode(context);
+
+    /// --- Responsive dimensions ---
+    final double spacing =
+        MediaQuery.of(context).size.height * 0.02; // ~2% of screen height
+    final double imageWidth =
+        MediaQuery.of(context).size.width * 0.6; // ~60% of screen width
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: HMSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
-              const SizedBox(height: HMSizes.spaceBtwSections * 2),
+              SizedBox(height: spacing * 2),
 
               /// -- SVG IMAGE --
               Center(
                 child: SvgPicture.asset(
                   image,
-                  width: HMHelperFunction.screenWidth() * 0.6,
+                  width: imageWidth,
                 ),
               ),
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// -- TITLE and SUBTITLE --
               Text(
@@ -44,13 +51,13 @@ class SuccessScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: HMSizes.spaceBtwItems),
+              SizedBox(height: spacing),
               Text(
                 subTitleKey.translate(context),
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: HMSizes.spaceBtwSections),
+              SizedBox(height: spacing),
 
               /// - BUTTONS --
               SizedBox(
