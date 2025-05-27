@@ -1,0 +1,101 @@
+name: hmdb
+description: "HMDB Application develop by Hossein Mahboubi"
+
+publish_to: "hossein0mahboubi.com"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+#-------------------- PACKAGES --------------------#
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Utility Package
+  http: ^1.1.0
+  intl: ^0.19.0
+  url_launcher: ^6.1.12
+  image_picker: ^1.0.4
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+
+  # Icons
+  iconsax: ^0.0.8
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.1.0
+
+  # State Management
+  get: ^4.6.5
+  get_storage: ^2.1.1
+  readmore: ^3.0.0
+  shared_preferences: ^2.2.0
+  flutter_launcher_icons: ^0.14.3
+
+  # Product Specific
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/logos/
+    - assets/images/onboarding/
+    - assets/images/authentication/
+    - assets/language/
+    - assets/images/main/commenters/
+    - assets/images/main/
+    - assets/images/main/animations/
+    - assets/images/main/genres/
+    - assets/images/main/persian_movies/
+    - assets/images/main/personal_preference/
+    - assets/images/main/personal_preference/separation/
+    - assets/images/main/personal_preference/prestige/
+    - assets/images/main/personal_preference/OneFlewOverTheCuckoo'sNest/
+    - assets/images/main/personal_preference/BraveHeart/
+    - assets/images/main/popular_movies/
+    - assets/images/main/popular_movies/TheShawshankRedemption/
+    - assets/images/main/popular_movies/TheGodfather1/
+    - assets/images/main/popular_movies/TheDarkKnight/
+    - assets/images/main/popular_movies/TheGodfather2/
+    - assets/images/main/imdb250/
+    - assets/images/main/imdb250/12AngryMan/
+    - assets/images/main/imdb250/LOTR_TheReturnOfTheKing/
+    - assets/images/main/imdb250/Schindler'sList/
+    - assets/images/main/persian_movies/
+    - assets/images/main/persian_movies/AboutElly/
+    - assets/images/main/persian_movies/LawOfTehran/
+    - assets/images/main/persian_movies/Leila'sBrothers/
+    - assets/images/main/persian_movies/MortalWound/
+    - assets/images/main/persian_movies/TheFrog/
+    - assets/images/main/animations/
+    - assets/images/main/animations/TheEmperor'sNewGroove/
+    - assets/images/main/animations/StarWarsTheCloneWars/
+    - assets/images/main/animations/Shrek/
+    - assets/images/main/animations/FindingNemo/
+    - assets/images/main/animations/Ratatouille/
+
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 800

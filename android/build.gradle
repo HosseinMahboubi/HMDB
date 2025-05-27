@@ -1,0 +1,44 @@
+subprojects {
+    afterEvaluate {
+        if (it.name == "flutter_inappwebview_android") {
+            it.android.buildTypes.release.minifyEnabled = false
+        }
+    }
+}
+
+//buildTypes {
+//    release {
+//        minifyEnabled true
+//        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//
+//    }}
+
+//buildTypes {
+//    release {
+//        minifyEnabled false
+//        shrinkResources false
+//        signingConfig = signingConfigs.debug
+//    }
+
+
+    allprojects {
+        repositories {
+            google()
+            mavenCentral()
+        }
+    }
+
+// Apply the patch for flutter_inappwebview
+    apply from: 'build-patch.gradle'
+
+    rootProject.buildDir = "../build"
+    subprojects {
+        project.buildDir = "${rootProject.buildDir}/${project.name}"
+    }
+    subprojects {
+        project.evaluationDependsOn(":app")
+    }
+
+    tasks.register("clean", Delete) {
+        delete rootProject.buildDir
+    }

@@ -1,0 +1,10 @@
+// This is a patch file to fix the namespace issue
+subprojects {
+    afterEvaluate { project ->
+        if (project.name == 'flutter_inappwebview') {
+            android {
+                namespace 'com.pichillilorenzo.flutter_inappwebview'
+            }
+        }
+    }
+}
