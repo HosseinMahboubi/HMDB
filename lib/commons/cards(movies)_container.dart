@@ -14,6 +14,7 @@ class HMCards_Movies_Container extends StatelessWidget {
     /// --- Responsive width: about 45% of screen width ---
     final double cardWidth = MediaQuery.of(context).size.width * 0.45;
     final double cardHeight = cardWidth;
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       height: cardHeight,
@@ -21,11 +22,13 @@ class HMCards_Movies_Container extends StatelessWidget {
       foregroundDecoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.black.withOpacity(0.8),
+            Colors.black.withOpacity(0.9),
+            Colors.black.withOpacity(0.5),
             Colors.transparent,
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
+          stops: const [0.0, 0.4, 0.8],
         ),
       ),
       margin: EdgeInsets.symmetric(
@@ -35,9 +38,12 @@ class HMCards_Movies_Container extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 6),
+            color: isDark 
+                ? Colors.black.withOpacity(0.5) 
+                : Colors.grey.withOpacity(0.4),
+            blurRadius: 12,
+            spreadRadius: 2,
+            offset: const Offset(0, 5),
           ),
         ],
         image: DecorationImage(

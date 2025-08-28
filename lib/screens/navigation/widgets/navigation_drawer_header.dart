@@ -49,17 +49,17 @@ class HMNavigationDrawerHeader extends StatelessWidget {
             );
           }),
           SizedBox(height: spacing),
-          Text(
-            "welcome_user"
-                .translate(context)
-                .replaceAll("{username}", username),
-            style: TextStyle(
-              color: dark ? HMColors.primary : HMColors.white,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
+          // Text(
+          //   "welcome_user"
+          //       .translate(context)
+          //       .replaceAll("{username}", username),
+          //   style: TextStyle(
+          //     color: dark ? HMColors.primary : HMColors.white,
+          //     fontSize: fontSize,
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
         ],
       ),
     );

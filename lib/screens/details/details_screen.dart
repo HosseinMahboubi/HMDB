@@ -137,7 +137,7 @@ class DetailsScreen extends StatelessWidget {
             ),
 
             /// -- CLOSE BUTTON --
-            const HMCloseButton(),
+            // const HMCloseButton(),
 
             /// -- DOWNLOAD (WATCH) MOVIE --
             HMDownloadWatchButton(

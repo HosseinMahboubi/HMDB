@@ -49,10 +49,11 @@ class CustomCardThumbnails extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: dark
-                  ? Colors.black.withOpacity(0.3)
-                  : Colors.grey.withOpacity(0.2),
-              blurRadius: 10,
-              spreadRadius: 0,
+                  ? Colors.black.withOpacity(0.5)
+                  : Colors.grey.withOpacity(0.3),
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: const Offset(0, 5),
             ),
           ],
         ),
@@ -63,7 +64,7 @@ class CustomCardThumbnails extends StatelessWidget {
               /// -- MOVIE IMAGE --
               HMThumbnailMovieImage(imageAsset: imageAsset),
 
-              /// --- Gradient overlay ---
+              /// --- Enhanced gradient overlay ---
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(borderRadius),
@@ -72,9 +73,10 @@ class CustomCardThumbnails extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.8),
+                      Colors.black.withOpacity(0.5),
+                      Colors.black.withOpacity(0.9),
                     ],
-                    stops: const [0.5, 1.0],
+                    stops: const [0.4, 0.75, 1.0],
                   ),
                 ),
               ),
@@ -87,7 +89,7 @@ class CustomCardThumbnails extends StatelessWidget {
               ),
 
               /// -- PLAY BUTTON --
-              const HMPlayButton(),
+              // const HMPlayButton(),
             ],
           ),
         ),

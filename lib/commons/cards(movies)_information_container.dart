@@ -36,6 +36,13 @@ class HMCards_Movies_InformationContainer extends StatelessWidget {
                     color: Colors.white,
                     fontSize: fontSize,
                     fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        offset: const Offset(0, 1),
+                        blurRadius: 3.0,
+                        color: Colors.black.withOpacity(0.7),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: fontSize * 0.35),
@@ -46,6 +53,13 @@ class HMCards_Movies_InformationContainer extends StatelessWidget {
                     color: Colors.white,
                     fontSize: fontSize,
                     fontWeight: FontWeight.w300,
+                    shadows: [
+                      Shadow(
+                        offset: const Offset(0, 1),
+                        blurRadius: 2.0,
+                        color: Colors.black.withOpacity(0.7),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: fontSize * 0.35),
@@ -69,6 +83,13 @@ class HMCards_Movies_InformationContainer extends StatelessWidget {
                   color: Colors.white,
                   fontSize: fontSize,
                   fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      offset: const Offset(0, 1),
+                      blurRadius: 2.0,
+                      color: Colors.black.withOpacity(0.7),
+                    ),
+                  ],
                 ),
               ),
             ],

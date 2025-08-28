@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hmdb/screens/onboarding/onboarding.dart';
+import 'package:hmdb/screens/authentication/login/login.dart';
 
 /// -- CONTROLLER FOR THE SPLASH SCREEN --
 class SplashScreenController extends GetxController
@@ -39,11 +39,11 @@ class SplashScreenController extends GetxController
     /// -- START ANIMATION --
     animationController.forward();
 
-    /// -- NAVIGATE TO ONBOARDING SCREEN AFTER n SECOND DELAY --
+    /// -- NAVIGATE TO LOGIN SCREEN AFTER n SECOND DELAY --
     Future.delayed(
-      const Duration(seconds: 7),
+      const Duration(seconds: 4),
       () {
-        Get.offAll(() => const OnBoardingScreen());
+        Get.offAll(() => const LoginScreen());
       },
     );
   }
