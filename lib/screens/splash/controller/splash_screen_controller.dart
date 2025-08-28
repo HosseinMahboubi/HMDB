@@ -39,7 +39,7 @@ class SplashScreenController extends GetxController
     /// -- START ANIMATION --
     animationController.forward();
 
-    /// -- NAVIGATE TO LOGIN SCREEN AFTER n SECOND DELAY --
+    /// -- NAVIGATE TO NAVIGATION MENU AFTER n SECOND DELAY --
     Future.delayed(
       const Duration(seconds: 4),
       () {

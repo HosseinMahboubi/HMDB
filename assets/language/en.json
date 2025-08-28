@@ -4,6 +4,9 @@
   "app_tag_line": "Your Ultimate Movie Database",
   "welcome_user": "Welcome {username}",
 
+  "loading_cinema_experience": "Loading your cinema experience...",
+  "app_version": "v2.1.0",
+
 
   "choose_image_source": "Choose Image Source",
   "camera": "Camera",

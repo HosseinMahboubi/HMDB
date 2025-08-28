@@ -2,6 +2,11 @@
   "app_name": "سینمورا",
   "welcome": " خوش آمدید به ",
   "welcome_user": "خوش آمدید {username}",
+
+  "loading_cinema_experience": "در حال بارگذاری ...",
+  "app_version": "نسخه ۲.۱.۰",
+
+
   "home": "خانه",
   "app_tag_line": "دنیای بینهایت سینما در اختیار شماست",
 

@@ -7,6 +7,7 @@ class HMColors {
 
   /// --- IMDB-inspired gold ---
   static const Color primary = Color(0xFFF5C518);
+  static const Color secondPrimary = Color(0xFF3B4CCA);
 
   /// --- Deep navy (IMDB-inspired) ---
   static const Color secondary = Color(0xFF032541);
